@@ -1,7 +1,14 @@
-import Login from "./pages/login.tsx"
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/login";
+import Register from "./pages/registrer";
 
-const App = () => {
-  return <Login />
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
