@@ -16,12 +16,12 @@ const Login: React.FC = () => {
       {/* Mitad izquierda */}
       <div className="relative w-full flex items-center justify-center lg:w-1/2 bg-gradient-to-tr from-emerald-950 to-gray-900 overflow-y-auto">
         {/* Volver al inicio arriba */}
-        <a
-          href="/"
+        <Link to="/"
           className="absolute top-4 left-4 text-gray-500 hover:text-green-400 text-xs px-2 py-1 rounded transition-colors duration-200"
         >
           ← Atrás
-        </a>
+        </Link>
+         
 
         <div className="w-full max-w-sm rounded-2xl bg-gray-800 p-6 shadow-lg my-8">
           <h1 className="text-2xl font-bold text-green-400 mb-2">Lubix</h1>
