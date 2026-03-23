@@ -75,7 +75,7 @@ const Login: React.FC = () => {
                 />
                 Recuérdame
               </label>
-              <a href="#" className="text-green-400 hover:underline">
+              <a href="/recover" className="text-green-400 hover:underline">
                 ¿Olvidaste tu contraseña?
               </a>
             </div>
@@ -98,15 +98,20 @@ const Login: React.FC = () => {
       </div>
 
       {/* Mitad derecha */}
-      <div className="hidden relative lg:flex h-full w-1/2 items-center justify-center bg-gray-200">
+<div className="hidden relative lg:flex h-full w-1/2 items-center justify-center bg-gray-300">
+  <div className="relative flex flex-col items-center">
+  <h1
+  className="
+    hidden lg:block absolute -top-52  w-full text-center text-5xl font-extrabold bg-gradient-to-r from-emerald-600 via-green-900 to-gray-900 bg-clip-text text-transparent animate-fadeIn drop-shadow-lg">
+  Bienvenidos a Lubix
+   </h1>
 
-        <div className="relative flex flex-col items-center">
-        <div className="relative w-80 h-80 rounded-full bg-gradient-to-tr from-emerald-500 to-emerald-800 shadow-[0_0_60px_rgba(16,185,129,0.6)] animate-bounce"></div>
-        <div className="w-40 h-16 bg-emerald-500/40 rounded-full blur-md animate-pulse"></div>
-        </div>
-        
+    <div className="relative mt-32 w-80 h-80 rounded-full bg-gradient-to-tr from-emerald-500 to-emerald-800 shadow-[0_0_60px_rgba(16,185,129,0.6)] animate-bounce"></div>
+    <div className="w-40 h-16 bg-emerald-500/40 rounded-full blur-md animate-pulse"></div>
       </div>
     </div>
+  </div>
+    
   );
 };
 
