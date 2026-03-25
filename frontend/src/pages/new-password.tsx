@@ -1,27 +1,41 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const NewPassword: React.FC = () => {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState("");
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setShow(true);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirm) {
       setError("Las contraseñas no coinciden");
       return;
     }
     setError("");
-    console.log("Nueva contraseña:", password);
 
-    // Aquí podrías llamar a tu backend para guardar la nueva contraseña
-    alert("Contraseña restablecida con éxito");
+    try {
+      // Aquí llamas a tu backend para guardar la nueva contraseña
+      // Ejemplo con fetch:
+      await fetch("/api/reset-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+
+      alert("Contraseña restablecida con éxito");
+
+      // Redirigir al login
+      navigate("/login");
+    } catch (err) {
+      setError("Error al guardar la contraseña");
+    }
   };
 
   return (
