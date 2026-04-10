@@ -6,6 +6,8 @@ import RecoverPassword from "./pages/reset-password";
 import VerificationCode from "./pages/verific-code";
 import NewPassword from "./pages/new-password";
 import Home from "./pages/Home"; 
+import HomeUsuario from "./pages/home-usuario";
+
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       <Route path="/recover" element={<RecoverPassword />} />
       <Route path="/verify" element={<VerificationCode />} />
       <Route path="/new-password" element={<NewPassword />} />
+      <Route path="/home-usuario" element={<HomeUsuario />} />
+
     </Routes>
   );
 }

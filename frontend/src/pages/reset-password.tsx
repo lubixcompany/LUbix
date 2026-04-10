@@ -1,52 +1,42 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const RecoverPassword: React.FC = () => {
   const [email, setEmail] = useState("");
-  const [show, setShow] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setShow(true);
-  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ email });
-
     navigate("/verify");
   };
 
   return (
-    <div className="flex w-full h-screen items-center justify-center bg-gradient-to-tr from-emerald-950 to-gray-900">
-      <div
-        className={`w-full max-w-lg min-h-[500px] rounded-2xl bg-gray-800 p-12 shadow-2xl relative transform transition-all duration-700 ease-out
-        ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+    <div className="flex items-center justify-center w-full h-screen bg-gray-50 relative">
+      {/* Botón atrás */}
+      <Link
+        to="/"
+        className="absolute top-4 left-4 text-gray-500 hover:text-green-500 text-xs px-2 py-1 rounded transition-colors duration-200"
       >
-        <Link
-          to="/"
-          className="absolute top-2 left-4 text-gray-400 hover:text-green-400 text-sm"
-        >
-          ← Volver al inicio
-        </Link>
+        ← Atrás
+      </Link>
 
-        <h1 className="text-3xl font-bold text-green-400 mb-4">Lubix</h1>
-        <h2 className="text-xl text-white mb-6">Recuperar Contraseña</h2>
-        <p className="text-gray-300 mb-8">
-          Ingresa tu correo electrónico y te enviaremos un código para
-          restablecer tu contraseña.
+      {/* Card de Recuperar contraseña */}
+      <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
+        <h1 className="text-2xl font-bold text-green-600 mb-2 text-center">Lubix</h1>
+        <h2 className="text-xl text-gray-800 mb-6 text-center">Recuperar Contraseña</h2>
+        <p className="text-gray-600 mb-6 text-center">
+          Ingresa tu correo electrónico y te enviaremos un código para restablecer tu contraseña.
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-300 mb-2">
-              Correo electrónico *
-            </label>
+            <label className="block text-gray-700 mb-1">Correo electrónico *</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-lg bg-gray-700 px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full rounded bg-gray-100 px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="tu@email.com"
               required
             />
@@ -54,15 +44,15 @@ const RecoverPassword: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-green-500 py-3 font-semibold text-white hover:bg-green-600 transition-colors"
+            className="w-full rounded bg-green-500 py-2 font-semibold text-white hover:bg-green-600 transition"
           >
             Enviar código
           </button>
         </form>
 
-        <p className="mt-8 text-center text-gray-400">
+        <p className="mt-6 text-center text-gray-600">
           ¿Ya recuerdas tu contraseña?{" "}
-          <Link to="/" className="text-green-400 hover:underline">
+          <Link to="/login" className="text-green-600 hover:underline">
             Inicia sesión
           </Link>
         </p>

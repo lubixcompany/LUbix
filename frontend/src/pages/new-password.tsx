@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 const NewPassword: React.FC = () => {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState("");
-  const [show, setShow] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setShow(true);
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +17,6 @@ const NewPassword: React.FC = () => {
 
     try {
       // Aquí llamas a tu backend para guardar la nueva contraseña
-      // Ejemplo con fetch:
       await fetch("/api/reset-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -30,8 +24,6 @@ const NewPassword: React.FC = () => {
       });
 
       alert("Contraseña restablecida con éxito");
-
-      // Redirigir al login
       navigate("/login");
     } catch (err) {
       setError("Error al guardar la contraseña");
@@ -39,44 +31,43 @@ const NewPassword: React.FC = () => {
   };
 
   return (
-    <div className="flex w-full h-screen items-center justify-center bg-gradient-to-tr from-emerald-950 to-gray-900">
-      <div
-        className={`w-full max-w-lg min-h-[500px] rounded-2xl bg-gray-800 p-12 shadow-2xl relative transform transition-all duration-700 ease-out
-        ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+    <div className="flex items-center justify-center w-full h-screen bg-gray-50 relative">
+      {/* Botón atrás */}
+      <Link
+        to="/"
+        className="absolute top-4 left-4 text-gray-500 hover:text-green-500 text-xs px-2 py-1 rounded transition-colors duration-200"
       >
-        <Link
-          to="/"
-          className="absolute top-2 left-4 text-gray-400 hover:text-green-400 text-sm"
-        >
-          ← Volver al inicio
-        </Link>
+        ← Atrás
+      </Link>
 
-        <h1 className="text-3xl font-bold text-green-400 mb-4">Lubix</h1>
-        <h2 className="text-xl text-white mb-6">Nueva Contraseña</h2>
-        <p className="text-gray-300 mb-8">
+      {/* Card de Nueva Contraseña */}
+      <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
+        <h1 className="text-2xl font-bold text-green-600 mb-2 text-center">Lubix</h1>
+        <h2 className="text-xl text-gray-800 mb-6 text-center">Nueva Contraseña</h2>
+        <p className="text-gray-600 mb-6 text-center">
           Ingresa tu nueva contraseña y confírmala para completar el proceso.
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-300 mb-2">Nueva contraseña *</label>
+            <label className="block text-gray-700 mb-1">Nueva contraseña *</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-lg bg-gray-700 px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full rounded bg-gray-100 px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="********"
               required
             />
           </div>
 
           <div>
-            <label className="block text-gray-300 mb-2">Confirmar contraseña *</label>
+            <label className="block text-gray-700 mb-1">Confirmar contraseña *</label>
             <input
               type="password"
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
-              className="w-full rounded-lg bg-gray-700 px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full rounded bg-gray-100 px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-400"
               placeholder="********"
               required
             />
@@ -86,7 +77,7 @@ const NewPassword: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-green-500 py-3 font-semibold text-white hover:bg-green-600 transition-colors"
+            className="w-full rounded bg-green-500 py-2 font-semibold text-white hover:bg-green-600 transition"
           >
             Guardar nueva contraseña
           </button>
